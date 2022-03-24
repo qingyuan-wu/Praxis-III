@@ -5,10 +5,10 @@ Contents: structure for SSID and other info
 '''
 secrets = {
     "ssid": "Parveer's iPhone",
-    "password": "braxis33",
+    "password": password,
     "timezone": "America/Toronto",
-    "aio_username": "NivethaSathish",
-    "aio_key": "aio_pPbg023QBvJWEaNy07Ye6tnuz7X1",
+    "aio_username": value,
+    "aio_key": value,
     'broker': 'io.adafruit.com',
     'port': 1883
 }
