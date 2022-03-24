@@ -164,12 +164,19 @@ while True:
         print("Publishing %s to photoresistance feed..." % photoresistance)
         io.publish("photoresistance", adc_to_voltagephoto(photoresistance))
 
-        adctemp = thermistor.value
+        measuredresistance = int(thermistor.value)
+        #calibration values
+        T_high = 30
+        T_low = 25
+        Cond_high = 1/30000
+        Cond_low = 1/32500
+        m = (T_high - T_low)/(Cond_high - Cond_low)
+        b = T_high - m * Cond_high
+
         #resistancethermo = 10000 /(1023/(adctemp-1))
-        print("Publishing %s to temperature feed..." % adctemp)
-        io.publish("temperature", adc_to_voltagethermo(adctemp))
-            
+        print("Publishing %s to temperature feed..." % ((m/measuredresistance) + b))
+        io.publish("temperature", measuredresistance)
+
         prv_refresh_time = time.monotonic()
 
     #post_data(cpu_temp)
-
