@@ -6,6 +6,9 @@ __pycache__/
 # node_modules
 */node_modules
 
+#secrets with wifi username and password
+Lab-3-Website/secrets.py
+
 # C extensions
 *.so
 
