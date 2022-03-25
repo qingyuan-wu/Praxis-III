@@ -50,7 +50,9 @@
   <div class = "values">
     <p>The current temperature is:</p>
     <div class = "box">
-      <p style = "text-align: center"><%- temp -%> 35°C</p>
+      <% if (temperature) { %>
+        <p style = "text-align: center"><%- temperature -%> °C</p>
+      <% } %>
     </div>
   </div>
   <div class = "values">

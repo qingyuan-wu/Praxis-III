@@ -7,6 +7,8 @@ data_obj = {"temp": "300"}
 
 i = 0
 while True:
-    req.post(URL, { "temp": i })
+    req.post(URL, data={ "test": i })
     i += 1
+    print(i, req)
     time.sleep(5)
+
