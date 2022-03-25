@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Greenhouse</title>
+  <style>
+      body {
+        background-color: #b4e9f0;
+      }
+      .Heading {
+        color: #020202;
+        font-family: 'Times New Roman';
+        text-align: center;
+      }
+      .Description {
+        color: black;
+        font-family: 'Times New Roman';
+        font-size: 12px;
+        text-align: center;
+      }
+      .Data {
+        margin-top: 40px;
+        color: black;
+        font-family: 'Georgia';
+        display: flex;
+      }
+      .values {
+        flex: 50%;
+        text-align: center;
+      }
+      .box {
+        margin: auto;
+        width: 40%;
+        border: 3px solid #2e0cc7;
+        padding: 10px;
+      } 
+  </style>
+</head>
+
+<body>
+
+<div class = "Heading">
+  <h1>Real-Time Greenhouse Updates</h1>
+</div>
+
+<div class = "Description">
+  <p>This site displays data using a thermosister and a photoresister on an Arduino using Adafruit's IOT system</p>
+</div>
+<hr style = "color:black;background-color:black;border-width:0;height:2px">
+<div class = "Data">
+  <div class = "values">
+    <p>The current temperature is:</p>
+    <div class = "box">
+      <p style = "text-align: center">35°C</p>
+    </div>
+  </div>
+  <div class = "values">
+    <p>The current brightness is:</p>
+    <div class = "box">
+      <p style = "text-align: center">45</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
