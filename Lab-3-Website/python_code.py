@@ -16,6 +16,8 @@ from adafruit_io.adafruit_io import IO_MQTT
 
 import analogio
 
+from math import log
+
 print("start")
 # Define callback functions which will be called when certain events happen. # pylint: disable=unused-argument
 def connected(client):
@@ -156,13 +158,13 @@ while True:
         cpu_temp = str(cpu_temp)[:5]
         print("CPU temperature is %s degrees C" % cpu_temp)
         # publish it to io
-        print("Publishing %s to temperature feed..." % cpu_temp)
-        io.publish("temperature", cpu_temp)
+        #print("Publishing %s to temperature feed..." % cpu_temp)
+        #io.publish("temperature", cpu_temp)
 
         # also set a new photoresistor reading to IO every 5 seconds
         photoresistance = light_sensor.value
         print("Publishing %s to photoresistance feed..." % photoresistance)
-        io.publish("photoresistance", adc_to_voltagephoto(photoresistance))
+        io.publish("photoresistance", photoresistance)
 
         measuredresistance = int(thermistor.value)
         #calibration values
@@ -175,8 +177,15 @@ while True:
 
         #resistancethermo = 10000 /(1023/(adctemp-1))
         print("Publishing %s to temperature feed..." % ((m/measuredresistance) + b))
-        io.publish("temperature", measuredresistance)
+        io.publish("temperature", (m/measuredresistance) + b)
+        
+        #resistance = 10000/ (1023/ (measuredresistance - 1))
+        #print("resistance", resistance, measuredresistance)
+        #tempinv = (1/298.15) + (1/10000)*log(resistance/35000)
+        #temp = 1/tempinv
+        
 
-        prv_refresh_time = time.monotonic()
-
+        #prv_refresh_time = time.monotonic()
+        #print("Publishing %s to temperature feed..." % (temp))
+    time.sleep(30)
     #post_data(cpu_temp)
