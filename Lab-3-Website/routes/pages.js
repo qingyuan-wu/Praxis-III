@@ -11,6 +11,7 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     //render index.ejs page
+    console.log(req.body);
     res.render('index', { 'temperature': 5 });
 });
 
