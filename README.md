@@ -8,4 +8,4 @@ Software programs for group 1910H - The Plastics
   * clone this repo and open it in your code editor
   * Navigate to the `Lab-3-Website` directory with `cd Lab-3-Website` in your terminal/cmd
   * Run `npm i` to install dependencies
-  * `npm run dev` to run in development or `node app.js` in production
+  * `npm run dev` to run in development or `node app.js` 
