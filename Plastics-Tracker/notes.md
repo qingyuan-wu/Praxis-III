@@ -7,5 +7,5 @@
 
 ### Database
 ```sql
-CREATE TABLE `plastics`.`tracking` ( `type` INT(10) NOT NULL , `timestamp` DATE NOT NULL ) ENGINE = InnoDB;
+CREATE TABLE `plastics`.`tracking` ( `type` INT(10) NOT NULL , `timestamp` DATETIME NOT NULL ) ENGINE = InnoDB;
 ```
