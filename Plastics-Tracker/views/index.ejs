@@ -32,6 +32,7 @@
         width: 40%;
         border: 3px solid #2e0cc7;
         padding: 10px;
+        margin-bottom: 10px;
       } 
   </style>
 </head>
@@ -54,6 +55,10 @@
         <p style = "text-align: center"><%- data[1] -%></p>
       <% } %>
     </div>
+    <form action="/reset?type=1" method="POST">
+      <button id="reset-1" type="submit">Reset 1</button>
+    </form>
+    
   </div>
   <div class = "values">
     <p>The current amount of type 2 is:</p>
@@ -62,6 +67,9 @@
         <p style = "text-align: center"><%- data[2] -%></p>
       <% } %>
     </div>
+    <form action="/reset?type=2" method="POST">
+      <button id = "reset-2" type="submit">Reset 2</button>
+    </form>
   </div>
 </div>
 </body>
