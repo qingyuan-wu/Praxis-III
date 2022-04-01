@@ -3,16 +3,20 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    db.query(`
-        INSERT INTO plastics.tracking (type, timestamp)
-        VALUES (${req.body.type}, NOW())
-    `, (err2) => {
-        if (err2) {
-            console.log(err);
-            return res.status(500).json({ error: 'Internal Server Error 500' })
-        }
-    });
-    return res.status(200);
+    if(req.body.request == "reset") {
+        db.query(`DELETE FROM plastics.tracking WHERE type=${req.body.type}`)
+    }
+    if(req.body.request == "newdata")
+        db.query(`
+            INSERT INTO plastics.tracking (type, timestamp)
+            VALUES (${req.body.type}, NOW())
+        `, (res2, err2) => {
+            if (err2) {
+                console.log(err2);
+                return res.status(500).json({ error: 'Internal Server Error 500' })
+            }
+        });
+    res.status(200);
 });
 
 router.get('/', (req, res) => {
