@@ -12,6 +12,10 @@ router.post('/', (req, res) => {
             return res.status(500).json({ error: 'Internal Server Error 500' })
         }
     });
+    db.query(`
+        INSERT INTO plastics.archive (type, timestamp)
+        VALUES (${req.body.type}, NOW())
+    `,)
     res.status(200);
 });
 
