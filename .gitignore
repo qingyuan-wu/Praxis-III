@@ -11,6 +11,8 @@ Lab-3-Website/secrets.py
 
 # C extensions
 *.so
+# pytorch
+pytorch/
 
 # Distribution / packaging
 .Python
