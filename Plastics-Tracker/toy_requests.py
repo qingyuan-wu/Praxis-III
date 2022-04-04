@@ -5,9 +5,9 @@ PORT = 4003
 URL = f"http://localhost:{PORT}"
 
 i = 0
-while True:
-    print(i)
-    req.post(URL, data={ "type": '1' })
+for x in range(20):
+    data={ "type": randint(1,2)}
+    req.post(URL, data=data)
     i += 1
     print(i, req)
-    time.sleep(5)
+    time.sleep(2)

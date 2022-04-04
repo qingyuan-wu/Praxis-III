@@ -8,4 +8,6 @@
 ### Database
 ```sql
 CREATE TABLE `plastics`.`tracking` ( `type` INT(10) NOT NULL , `timestamp` DATETIME NOT NULL ) ENGINE = InnoDB;
+CREATE TABLE `plastics`.`archive` ( `type` INT(10) NOT NULL , `timestamp` DATETIME NOT NULL ) ENGINE = InnoDB;
+
 ```
