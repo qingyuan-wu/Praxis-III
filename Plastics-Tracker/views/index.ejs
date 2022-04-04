@@ -31,9 +31,21 @@
         margin: auto;
         width: 40%;
         border: 3px solid #2e0cc7;
+        border-radius:5px;
         padding: 10px;
         margin-bottom: 10px;
-      } 
+      }
+      
+      /*Reset buttons*/
+      #reset-1, #reset-2 {
+        background-color: rgb(144, 226, 62);
+        border: 2px solid rgb(138, 189, 88);
+
+      }
+      #reset-1:hover, #reset-2:hover {
+        cursor:pointer;
+        border: 3px solid rgb(217, 77, 59);
+      }
   </style>
 </head>
 
@@ -49,10 +61,13 @@
 <hr style = "color:black;background-color:black;border-width:0;height:2px">
 <div class = "Data">
   <div class = "values">
-    <p>The current amount of PET is:</p>
+    <p>Statistics for Sorted PET plastics:</p>
     <div class = "box">
       <% if (data) { %>
-        <p style = "text-align: center"><%- data[1] -%></p>
+        <p style = "text-align: center">Total Sorted: <%- data[1] -%></p>
+        <p style = "text-align: center">Mass: <%- data[1] * 30 -%> kg</p>
+      <% } else { %>
+        <p>Sorry, data unavailable for now :((</p>
       <% } %>
     </div>
     <form action="/reset?type=1" method="POST">
@@ -61,10 +76,13 @@
     
   </div>
   <div class = "values">
-    <p>The current amount of non-PET is:</p>
+    <p>Statistics for Sorted non-PET plastics:</p>
     <div class = "box">
       <% if (data) { %>
-        <p style = "text-align: center"><%- data[2] -%></p>
+        <p style = "text-align: center">Total Sorted: <%- data[2] -%></p>
+        <p style = "text-align: center">Mass: <%- data[1] * 30/1000 -%> kg</p>
+      <% } else { %>
+        <p>Sorry, data unavailable for now :((</p>
       <% } %>
     </div>
     <form action="/reset?type=2" method="POST">
