@@ -80,9 +80,17 @@ router.get('/', (req, res) => {
                     type2[loc] += 1
                 }
             }
-            console.log(type1);
-            console.log(type2);
-            res.render('index', { 'data': counts, 'graph1' : type1, 'graph2' : type2 })
+            graph1 = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
+            graph2 = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
+            for (let i=0; i < 7; i++) {
+                graph1[i][0] = dayjs().startOf('day').subtract(6-i, 'day').format('MMM D');
+                graph1[i][1] = type1[i];
+                graph2[i][0] = dayjs().startOf('day').subtract(6-i, 'day').format('MMM D');
+                graph2[i][1] = type2[i];
+            }
+            console.log(graph1)
+
+            res.render('index', { 'data': counts, 'graph1' : graph1, 'graph2' : graph2 })
         });       
     });
 });
