@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
     db.query(`
         INSERT INTO plastics.tracking (type, timestamp)
         VALUES (${req.body.type}, NOW())
-    `, (res2, err2) => {
+    `, (err2, res2) => {
         if (err2) {
             console.log(err2);
             return res.status(500).json({ error: 'Internal Server Error 500' })
@@ -16,8 +16,14 @@ router.post('/', (req, res) => {
     db.query(`
         INSERT INTO plastics.archive (type, timestamp)
         VALUES (${req.body.type}, NOW())
-    `,)
-    res.status(200);
+    `, (err3, res3) => {
+        if (err3) {
+            console.log(err3);
+            return res.status(500).json({ error: 'Internal Server Error 500' })
+        }
+    });
+    // must .send() or else request won't terminate
+    return res.status(200).send("posting successful");
 });
 
 router.post('/reset', (req, res) => {
@@ -55,7 +61,8 @@ router.get('/', (req, res) => {
         const start = dayjs().startOf('day').subtract(6, 'day').toISOString();
         db.query(`
             SELECT *
-            FROM plastics.archive WHERE timestamp>'${start}'
+            FROM plastics.archive
+            WHERE timestamp > '${start}'
         `, (err3, res3) => {
             if (err3) {
                 console.log(err3);
@@ -88,11 +95,23 @@ router.get('/', (req, res) => {
                 graph2[i][0] = dayjs().startOf('day').subtract(6-i, 'day').format('MMM D');
                 graph2[i][1] = type2[i];
             }
-            console.log(graph1)
 
             res.render('index', { 'data': counts, 'graph1' : graph1, 'graph2' : graph2 })
         });       
     });
+});
+
+router.get('/latest', (req, res) => {
+    db.query(`
+    SELECT type, MAX(timestamp)
+    FROM plastics.tracking
+    `, (err2, res2) => {
+        if (err2) {
+            console.log(err2);
+            return res.status(500).json({ error: 'Internal Server Error 500' });
+        }
+    res.json({ "latest": res2 });
+    })
 });
 
 module.exports = router;
