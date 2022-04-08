@@ -6,6 +6,9 @@ __pycache__/
 # node_modules
 */node_modules
 
+# images
+/WaDaBa-256x256
+
 #secrets with wifi username and password
 Lab-3-Website/secrets.py
 
