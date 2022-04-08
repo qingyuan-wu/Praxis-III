@@ -1,6 +1,7 @@
 const db = require('../config/db');
 const express = require('express');
 const router = express.Router();
+const dayjs = require('dayjs');
 
 router.post('/', (req, res) => {
     db.query(`
@@ -51,11 +52,38 @@ router.get('/', (req, res) => {
             console.log(err2);
             return res.status(500).json({ error: 'Internal Server Error 500' })
         }
-        let counts = {1: 0 , 2: 0}
-        for (let i=0; i < res2.length; i++) {
-            counts[res2[i].type] = res2[i].count
-        }
-        res.render('index', { 'data': counts })
+        const start = dayjs().startOf('day').subtract(6, 'day').toISOString();
+        db.query(`
+            SELECT *
+            FROM plastics.archive WHERE timestamp>'${start}'
+        `, (err3, res3) => {
+            if (err3) {
+                console.log(err3);
+                return res.status(500).json({ error: 'Internal Server Error 500' })
+            }
+            let counts = {1: 0 , 2: 0}
+            for (let i=0; i < res2.length; i++) {
+                counts[res2[i].type] = res2[i].count
+
+            }
+            let type1 = [0,0,0,0,0,0,0];
+            let type2 = [0,0,0,0,0,0,0];
+            for (let i=0; i < res3.length; i++) {
+                time = res3[i].timestamp
+                const diffTime = Date.parse(dayjs().startOf('day')) - Date.parse(time);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                loc = 6 - diffDays
+                if (res3[i].type == 1) {
+                    type1[loc] += 1
+                }
+                else if (res3[i].type == 2) {
+                    type2[loc] += 1
+                }
+            }
+            console.log(type1);
+            console.log(type2);
+            res.render('index', { 'data': counts, 'graph1' : type1, 'graph2' : type2 })
+        });       
     });
 });
 
