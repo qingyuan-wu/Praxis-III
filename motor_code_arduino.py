@@ -76,7 +76,7 @@ CW_duty = 65000
 CCW_duty = 65000
 duty_step = 5000
 max_int = 65535
-up = False
+up = False # initial configuration is down
 # lower box: PET
 # upper box: not PET
 
