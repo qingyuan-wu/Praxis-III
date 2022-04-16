@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Greenhouse</title>
+  <title>The Smart Sorter</title>
   <style>
       body {
         background-color: #b4e9f0;
@@ -52,61 +52,61 @@
 
 <body>
 
-<div class = "Heading">
-  <h1>Real-Time Plastic Sorting Updates</h1>
-</div>
+  <div class = "Heading">
+    <h1>Real-Time Plastic Sorting Updates</h1>
+  </div>
 
-<div class = "Description">
-  <p>This site gives real time updates of the amounts of each plastic type sorted using our system</p>
-</div>
-<hr style = "color:black;background-color:black;border-width:0;height:2px">
-<div class = "Data">
-  <div class = "values">
-    <p>Statistics for Sorted PET plastics:</p>
-    <div class = "box">
-      <% if (data) { %>
-        <p style = "text-align: center">Total Sorted: <%- data[1] -%></p>
-        <!-- <p style = "text-align: center">Mass: <%- data[1] * 30/1000 -%> kg</p> -->
-      <% } else { %>
-        <p>Sorry, data unavailable for now :((</p>
-      <% } %>
-    </div>
-    <form action="/reset?type=1" method="POST">
-      <button id="reset-1" type="submit">Reset</button>
-    </form>
-    <div id="container" style="width: 80%; height: 80%; margin-top: 20px; display: block; margin-left: auto; margin-right: auto; border-style: solid;"></div>
+  <div class = "Description">
+    <p>This site gives real time updates on the amounts of each plastic type sorted using the Smart Sorter</p>
   </div>
-  <div class = "values">
-    <p>Statistics for Sorted non-PET plastics:</p>
-    <div class = "box">
-      <% if (data) { %>
-        <p style = "text-align: center">Total Sorted: <%- data[2] -%></p>
-        <!-- <p style = "text-align: center">Mass: <%- data[2] * 30/1000 -%> kg</p> -->
-      <% } else { %>
-        <p>Sorry, data unavailable for now :((</p>
-      <% } %>
+  <hr style = "color:black;background-color:black;border-width:0;height:2px">
+  <div class = "Data">
+    <div class = "values">
+      <p>Statistics for Sorted PET plastics:</p>
+      <div class = "box">
+        <% if (data) { %>
+          <p style = "text-align: center">Total Sorted: <%- data[1] -%></p>
+          <!-- <p style = "text-align: center">Mass: <%- data[1] * 30/1000 -%> kg</p> -->
+        <% } else { %>
+          <p>Sorry, data unavailable for now :((</p>
+        <% } %>
+      </div>
+      <form action="/reset?type=1" method="POST">
+        <button id="reset-1" type="submit">Reset</button>
+      </form>
+      <div id="container" style="width: 80%; height: 80%; margin-top: 20px; display: block; margin-left: auto; margin-right: auto; border-style: solid;"></div>
     </div>
-    <form action="/reset?type=2" method="POST">
-      <button id = "reset-2" type="submit">Reset</button>
-    </form>
-    <div id="container2" style="width: 80%; height: 80%; margin-top: 20px; display: block; margin-left: auto; margin-right: auto; border-style: solid;"></div>
+    <div class = "values">
+      <p>Statistics for Sorted non-PET plastics:</p>
+      <div class = "box">
+        <% if (data) { %>
+          <p style = "text-align: center">Total Sorted: <%- data[2] -%></p>
+          <!-- <p style = "text-align: center">Mass: <%- data[2] * 30/1000 -%> kg</p> -->
+        <% } else { %>
+          <p>Sorry, data unavailable for now :((</p>
+        <% } %>
+      </div>
+      <form action="/reset?type=2" method="POST">
+        <button id = "reset-2" type="submit">Reset</button>
+      </form>
+      <div id="container2" style="width: 80%; height: 80%; margin-top: 20px; display: block; margin-left: auto; margin-right: auto; border-style: solid;"></div>
+    </div>
   </div>
-</div>
 </body>
-<!-- https://www.anychart.com/blog/2017/10/25/javascript-bar-chart-tutorial/ -->
+
 <script>
   anychart.onDocumentReady(function() {
     // set the data
     var data = {
-        header: ["Date", "PET plastics sorted"],
-        rows: [
-          ["April 1st", 12],
-          ["April 2nd", 14],
-          ["April 3rd", 8],
-          ["April 4th", 9],
-          ["April 5th", 15],
-          ["April 6th", 4],
-          ["April 7th", 11]
+      header: ["Date", "PET plastics sorted"],
+      rows: [
+        ["April 9", 5],
+        ["April 10", 6],
+        ["April 11", 0],
+        ["April 12", 9],
+        ["April 13", 4],
+        ["April 14", 0],
+        ["April 15", 2]
     ]};
 
     // create the chart
@@ -122,34 +122,33 @@
     chart.container("container");
     chart.draw();
   });
+
   anychart.onDocumentReady(function() {
-
-// set the data
     var data = {
-        header: ["Date", "non-PET plastics sorted"],
-        rows: [
-          ["April 1st", 13],
-          ["April 2nd", 7],
-          ["April 3rd", 11],
-          ["April 4th", 6],
-          ["April 5th", 16],
-          ["April 6th", 10],
-          ["April 7th", 17]
-    ]};
+      header: ["Date", "non-PET plastics sorted"],
+      rows: [
+        ["April 9", 2],
+        ["April 10", 4],
+        ["April 11", 0],
+        ["April 12", 6],
+        ["April 13", 5],
+        ["April 14", 2],
+        ["April 15", 4]
+      ]};
 
-    // create the chart
-    var chart = anychart.bar();
+      // create the chart
+      var chart = anychart.bar();
 
-    // add the data
-    chart.data(data);
+      // add the data
+      chart.data(data);
 
-    // set the chart title
-    chart.title("Amount of non-PET sorted in the past week");
+      // set the chart title
+      chart.title("Amount of non-PET sorted in the past week");
 
-    // draw
-    chart.container("container2");
-    chart.draw();
-    });
+      // draw
+      chart.container("container2");
+      chart.draw();
+  });
   
 </script>
 </html>

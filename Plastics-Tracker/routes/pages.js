@@ -103,7 +103,7 @@ router.get('/', (req, res) => {
 
 router.get('/latest', (req, res) => {
     db.query(`
-    SELECT type, MAX(timestamp)
+    SELECT type, MAX(timestamp) as time
     FROM plastics.tracking
     `, (err2, res2) => {
         if (err2) {
